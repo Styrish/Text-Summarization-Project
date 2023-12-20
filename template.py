@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
 
-project_name = "Text-Summarization" 
+project_name = "Text-Summarization"  
 
 list_of_files = [
     ".github/workflows/.gitkeep",
@@ -26,7 +26,8 @@ list_of_files = [
     "Dockerfile",
     "requirements.txt",
     "setup.py",
-    "research/trials.ipnb"
+    "research/trials.ipnb",
+    "test.py"
 
 ]
 
@@ -34,18 +35,21 @@ for filepath in list_of_files:
     filepath = Path(filepath)
     filedir, filename = os.path.split(filepath)
 
-    if filedir !="":
+    if filedir != "":
         os.makedirs(filedir, exist_ok=True)
-        logging.info(f"creating directory:{filedir} for the file {filename}")
+        logging.info(f"Creating directory:{filedir} for the file {filename}")
 
     
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
-        with open('template.py', 'r') as file:
+        with open(filepath, 'w') as file:
             pass
             logging.info(f"Creating empty file: {filepath}")
 
 
 
+
+
     else:
         logging.info(f"{filename} is already exists")
+
 
